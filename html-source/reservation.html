@@ -155,7 +155,7 @@
     })();
 
 
-    document.getElementById("colorButton").addEventListener("click", function () {
+    document.getElementById("colorbutton").addEventListener("click", function () {
       let html = `
                    <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
                            <div class="form-row">
@@ -275,20 +275,20 @@
           willOpen: () => {
             const elem = document.getElementById('reservation-dates-modal');
             const rp = new DateRangePicker(elem, {
-                 format: "dd-mm-yyyy",
+                 format: 'dd-mm-yyyy',
                  showOnFocus: true,
 
             })
           },
           preConfirm: () => {
             return [
-              document.getElementById("start").value,
-              document.getElementById("end").value
+              document.getElementById('start').value,
+              document.getElementById('end').value
             ]
           },
           didOpen: () => {
-            document.getElementById("start").removeAttribute("disable");
-            document.getElementById("end").removeAttribute("disable");
+            document.getElementById('start').removeAttribute('disable');
+            document.getElementById('end').removeAttribute('disable');
           }
         })
 

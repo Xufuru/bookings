@@ -30,7 +30,7 @@
 
           <div class="col text-center">
 
-             <a id="check-avaibility-button" href="#!" class=" btn btn-success">Check Availability</a>
+             <a id="check-availability-button" href="#!" class=" btn btn-success">Check Availability</a>
 
           </div>
         </div>
@@ -46,7 +46,7 @@
 
 <script>
  
- document.getElementById("check-avaibility-button").addEventListener("click", function () {
+ document.getElementById("check-availability-button").addEventListener("click", function () {
     let html = `
                  <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
                    <div class="form-row">
@@ -62,13 +62,17 @@
                       </div>
                      </div>
                  </form>
-               `
+               `;
 
                           attention.custom({ msg: html, title: "Choose your dates" });
 
 })
 
+
+
 </script>
 
 
  {{end}}
+
+ 
