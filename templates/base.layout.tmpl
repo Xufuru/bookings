@@ -14,31 +14,6 @@
    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
 
-   <style>
-            .btn-outline-secondary {
-                color: aqua;
-                border-color: #6c757d;
-            }
-
-            p {
-
-            }
-
-            .paraClass {
-                font-size: 3em;
-            }
-
-            .secondClass {
-                color: red;
-            }
-
-            #lastPara {
-                text-decoration: underline;
-            }
-        </style>
-
-
-
   </head>
 
  <body>
@@ -160,6 +135,18 @@
         confirmButtonText: confirmationButtonText
       })
     }
+    
+    {{with .Error}}
+    notify("{{.}}", "error")
+    {{end}}
+
+    {{with .Flash}}
+    notify("{{.}}", "success")
+    {{end}}
+
+    {{with .Warning}}
+    notify("{{.}}", "warning")
+    {{end}}
 
 
     function Prompt() {
