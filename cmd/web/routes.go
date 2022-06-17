@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
+	"github.com/Xufuru/bookings/internal/config"
+	"github.com/Xufuru/bookings/internal/handlers"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/martino/bookings/internal/config"
-	"github.com/martino/bookings/internal/handlers"
 )
 
 func routes(app *config.AppConfig) http.Handler {
@@ -35,5 +35,4 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Handle("/static/*", http.StripPrefix("/static", fileServer))
 
 	return mux
-
 }

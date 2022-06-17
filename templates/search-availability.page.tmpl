@@ -1,9 +1,7 @@
 {{template "base" .}}
 
-{{define "content" }}
-
-
- <div class="container">
+{{define "content"}}
+    <div class="container">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -26,7 +24,7 @@
 
                     <hr>
 
-                    <button type="submit" class="btn btn-success">Search Availability</button>
+                    <button type="submit" class="btn btn-primary">Search Availability</button>
 
                 </form>
             </div>
@@ -36,17 +34,13 @@
     </div>
 {{end}}
 
- {{define "js" }}
 
-   <script>
+{{define "js"}}
+<script>
+    const elem = document.getElementById('reservation-dates');
+    const rangePicker = new DateRangePicker(elem, {
+        format: "yyyy-mm-dd",
+    });
+</script>
+{{end}}
 
-         const elem = document.getElementById('reservation-dates');
-           const rangePicker = new DateRangePicker(elem, {
-             format: "dd-mm-yyyy",
-           });
-
-    </script>
-
-    {{end}}
-
-    

@@ -8,12 +8,12 @@ import (
 	"os"
 	"time"
 
+	"github.com/Xufuru/bookings/internal/config"
+	"github.com/Xufuru/bookings/internal/handlers"
+	"github.com/Xufuru/bookings/internal/helpers"
+	"github.com/Xufuru/bookings/internal/models"
+	"github.com/Xufuru/bookings/internal/render"
 	"github.com/alexedwards/scs/v2"
-	"github.com/martino/bookings/helpers"
-	"github.com/martino/bookings/internal/config"
-	"github.com/martino/bookings/internal/handlers"
-	"github.com/martino/bookings/internal/models"
-	"github.com/martino/bookings/internal/render"
 )
 
 const portNumber = ":8080"
@@ -23,14 +23,14 @@ var session *scs.SessionManager
 var infoLog *log.Logger
 var errorLog *log.Logger
 
-// main is the main application function
+// main is the main function
 func main() {
 	err := run()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(fmt.Sprintf("Starting application on port %s", portNumber))
+	fmt.Println(fmt.Sprintf("Staring application on port %s", portNumber))
 
 	srv := &http.Server{
 		Addr:    portNumber,
@@ -38,16 +38,16 @@ func main() {
 	}
 
 	err = srv.ListenAndServe()
-	log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func run() error {
-
 	// what am I going to put in the session
 	gob.Register(models.Reservation{})
 
 	// change this to true when in production
-
 	app.InProduction = false
 
 	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
@@ -56,6 +56,7 @@ func run() error {
 	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	app.ErrorLog = errorLog
 
+	// set up the session
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
@@ -66,8 +67,7 @@ func run() error {
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
-		log.Fatal("cannot create a template cache")
-
+		log.Fatal("cannot create template cache")
 		return err
 	}
 

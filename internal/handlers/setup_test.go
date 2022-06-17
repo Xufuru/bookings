@@ -3,21 +3,20 @@ package handlers
 import (
 	"encoding/gob"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"time"
 
-	"html/template"
-
+	"github.com/Xufuru/bookings/internal/config"
+	"github.com/Xufuru/bookings/internal/models"
+	"github.com/Xufuru/bookings/internal/render"
 	"github.com/alexedwards/scs/v2"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/justinas/nosurf"
-	"github.com/martino/bookings/internal/config"
-	"github.com/martino/bookings/internal/models"
-	"github.com/martino/bookings/internal/render"
 )
 
 var app config.AppConfig
@@ -26,10 +25,10 @@ var pathToTemplates = "./../../templates"
 var functions = template.FuncMap{}
 
 func getRoutes() http.Handler {
+	// what am I going to put in the session
 	gob.Register(models.Reservation{})
 
 	// change this to true when in production
-
 	app.InProduction = false
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
@@ -38,6 +37,7 @@ func getRoutes() http.Handler {
 	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	app.ErrorLog = errorLog
 
+	// set up the session
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
@@ -48,8 +48,7 @@ func getRoutes() http.Handler {
 
 	tc, err := CreateTestTemplateCache()
 	if err != nil {
-		log.Fatal("cannot create a template cache")
-
+		log.Fatal("cannot create template cache")
 	}
 
 	app.TemplateCache = tc
@@ -87,7 +86,7 @@ func getRoutes() http.Handler {
 	return mux
 }
 
-// NoSurf adds CSRF protection to all post requests
+// NoSurf is the csrf protection middleware
 func NoSurf(next http.Handler) http.Handler {
 	csrfHandler := nosurf.New(next)
 
@@ -98,19 +97,19 @@ func NoSurf(next http.Handler) http.Handler {
 		SameSite: http.SameSiteLaxMode,
 	})
 	return csrfHandler
-
 }
 
-// SessionLoad loads and save the session every request
+// SessionLoad loads and saves session data for current request
 func SessionLoad(next http.Handler) http.Handler {
 	return session.LoadAndSave(next)
 }
 
-// CreateTestTemplateCache create a
+// CreateTestTemplateCache creates a template cache as a map
 func CreateTestTemplateCache() (map[string]*template.Template, error) {
+
 	myCache := map[string]*template.Template{}
 
-	pages, err := filepath.Glob(fmt.Sprintf("%s/*page.tmpl", pathToTemplates))
+	pages, err := filepath.Glob(fmt.Sprintf("%s/*.page.tmpl", pathToTemplates))
 	if err != nil {
 		return myCache, err
 	}
@@ -122,7 +121,7 @@ func CreateTestTemplateCache() (map[string]*template.Template, error) {
 			return myCache, err
 		}
 
-		matches, err := filepath.Glob(fmt.Sprintf("%s/templates/*.layout.tmpl", pathToTemplates))
+		matches, err := filepath.Glob(fmt.Sprintf("%s/*.layout.tmpl", pathToTemplates))
 		if err != nil {
 			return myCache, err
 		}
@@ -136,5 +135,6 @@ func CreateTestTemplateCache() (map[string]*template.Template, error) {
 
 		myCache[name] = ts
 	}
+
 	return myCache, nil
 }

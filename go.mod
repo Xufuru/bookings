@@ -1,11 +1,10 @@
-module github.com/martino/bookings
+module github.com/Xufuru/bookings
 
-go 1.18
+go 1.15
 
 require (
-	github.com/alexedwards/scs/v2 v2.5.0
-	github.com/go-chi/chi v1.5.4
+	github.com/alexedwards/scs/v2 v2.4.0
+	github.com/asaskevich/govalidator v0.0.0-20200907205600-7a23bdc65eef // indirect
+	github.com/go-chi/chi v1.5.1
 	github.com/justinas/nosurf v1.1.1
 )
-
-require github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
