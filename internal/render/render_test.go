@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/martino/bookings/internal/models"
+	"github.com/Xufuru/bookings/internal/models"
 )
 
 func TestAddDefaultData(t *testing.T) {
