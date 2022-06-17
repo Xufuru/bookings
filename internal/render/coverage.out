@@ -1,0 +1,23 @@
+mode: set
+github.com/martino/bookings/internal/render/render.go:21.40,24.2 1 1
+github.com/martino/bookings/internal/render/render.go:27.84,34.2 5 1
+github.com/martino/bookings/internal/render/render.go:37.105,40.18 2 1
+github.com/martino/bookings/internal/render/render.go:48.2,49.9 2 1
+github.com/martino/bookings/internal/render/render.go:53.2,60.16 5 1
+github.com/martino/bookings/internal/render/render.go:65.2,65.12 1 1
+github.com/martino/bookings/internal/render/render.go:40.18,44.3 1 0
+github.com/martino/bookings/internal/render/render.go:44.8,46.3 1 1
+github.com/martino/bookings/internal/render/render.go:49.9,51.3 1 1
+github.com/martino/bookings/internal/render/render.go:60.16,63.3 2 0
+github.com/martino/bookings/internal/render/render.go:71.67,75.16 3 1
+github.com/martino/bookings/internal/render/render.go:79.2,79.29 1 1
+github.com/martino/bookings/internal/render/render.go:100.2,100.21 1 1
+github.com/martino/bookings/internal/render/render.go:75.16,77.3 1 0
+github.com/martino/bookings/internal/render/render.go:79.29,82.17 3 1
+github.com/martino/bookings/internal/render/render.go:86.3,87.17 2 1
+github.com/martino/bookings/internal/render/render.go:91.3,91.23 1 1
+github.com/martino/bookings/internal/render/render.go:98.3,98.21 1 1
+github.com/martino/bookings/internal/render/render.go:82.17,84.4 1 0
+github.com/martino/bookings/internal/render/render.go:87.17,89.4 1 0
+github.com/martino/bookings/internal/render/render.go:91.23,93.18 2 0
+github.com/martino/bookings/internal/render/render.go:93.18,95.5 1 0
