@@ -1,3 +1,4 @@
 {
-    "workbench.editor.showTabs": true
+    "workbench.editor.showTabs": true,
+    "workbench.settings.editor": "ui"
 }
